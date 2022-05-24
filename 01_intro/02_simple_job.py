@@ -1,7 +1,13 @@
 from mrjob.job import MRJob
-
+from mrjob.job import MRStep
 
 class MRSimpleJob(MRJob):
+
+    def steps(self):
+        return [
+            MRStep(mapper=self.mapper,
+                   reducer=self.reducer)
+        ]
 
     def mapper(self, _, line):
         yield 'lines', 1
